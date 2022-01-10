@@ -1,0 +1,6 @@
+#!/bin/bash
+OUTPATH="/var/www/html/imgserver"
+
+curl -s -G "$1" > "$OUTPATH/tmpImg"
+convert "$OUTPATH/tmpImg" -resize 1280x720 "$OUTPATH/img720.png"
+rm "$OUTPATH/tmpImg"

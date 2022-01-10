@@ -1,0 +1,14 @@
+#!/bin/bash
+OUTPATH="/var/www/html/imgserver"
+SITEURL="http://10.0.1.80"
+APITOKEN="token"
+RENDERCONF="orgId=1&width=2560&height=1440&kiosk=tv&autofitpanels"
+
+if [ "${1:0:4}" = "http" ]; then
+	curl -s -G "$1" > "$OUTPATH/tmpImg"
+else
+	curl -s -H "Authorization: Bearer $APITOKEN" -G "$SITEURL$1" -d "$RENDERCONF" > "$OUTPATH/tmpImg"
+fi
+
+convert "$OUTPATH/tmpImg" -resize 1280x720 "$OUTPATH/img720.png"
+rm "$OUTPATH/tmpImg"

@@ -1,0 +1,6 @@
+Weather Station Current:/grafana/render/d/abcdefghi/weather-station-current
+Solar Weather Forecast:https://www.hamqsl.com/solarsun.php
+Network Status:/grafana/render/d/jklmnopqr/network-status
+Silver Spot Price:https://www.kitco.com/images/live/silver.gif
+Weather Station History:/grafana/render/d/stuvwxyz1/weather-station-history
+Orcas Island Airport West:https://images.wsdot.wa.gov/airports/OrcasW.jpg
