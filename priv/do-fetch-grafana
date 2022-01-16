@@ -10,5 +10,5 @@ else
 	curl -s -H "Authorization: Bearer $APITOKEN" -G "$SITEURL$1" -d "$RENDERCONF" > "$OUTPATH/tmpImg"
 fi
 
-convert "$OUTPATH/tmpImg" -resize 1280x720 "$OUTPATH/img720.png"
+convert "$OUTPATH/tmpImg" -resize $2x$3 "$OUTPATH/img.png"
 rm "$OUTPATH/tmpImg"

@@ -35,16 +35,37 @@ if ($c == 'cnt') {
 		die();
 	}
 
+	if (!$_GET['res']) {
+		$res = 'HD';
+	} else {
+		$res = $_GET['res'];
+	}
+
+	switch ($res) {
+		case 'SD':
+			$destWidth = 640;
+			$destHeight = 480;
+			break;
+		case 'FHD':
+			$destWidth = 1920;
+			$destHeight = 1080;
+			break;
+		default:
+			$destWidth = 1280;
+			$destHeight = 720;
+			break;
+	}
+
 	$imgLine = explode(":", $imgList[$imgNum], 2);
 	$url = $imgLine[1];
-	shell_exec("$basePath/priv/do-fetch $url");
-	$img = file_get_contents("$basePath/img720.png");
+	shell_exec("$basePath/priv/do-fetch $url $destWidth $destHeight");
+	$img = file_get_contents("$basePath/img.png");
 
 	if (!$img) {
 		http_response_code(500);
 		die();
 	} else {
-		header("Content-Disposition: attachment; filename=\"img720.png\"");
+		if (!$_GET['nodl']) header("Content-Disposition: attachment; filename=\"img.png\"");
 		header("Content-Type: image/png");
 		echo $img;
 	}
